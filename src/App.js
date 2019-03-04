@@ -2,48 +2,38 @@ import React, { Component } from 'react';
 
 export default class App extends Component {
     state = {
-        clicks: 0,
-        show: true
+        noteText: '',
+        note: [],
     }
 
-    AddItem = () => {
-        this.setState({ clicks : this.state.clicks +1 });
+    updateNoteText(noteText) {
+        this.setState({noteText: noteText.target.value})
     }
-
-    MinusItem = () => {
-        this.setState({ clicks: this.state.clicks -1 });
-    }
-
-    Validation = () => {
-        this.setState({ show : !this.state.show });
+    
+    addNote = (event) => {
+        event.preventDefault()
+        if (this.state.noteText === '')
+            {return false}
+        let notesArr = this.state.notes;
+        notesArr.push(this.state.noteText);
+        this.setState({noteText:''});
+        this.textInput.focus();
+        console.log('add')
     }
 
     render() {
         return (
-            <div>
-                <button
-                    onClick = { this.AddItem }
-                    title = "Click to add 1"
+            <form onSubmit = {this.addNote}>
+                <input 
+                    type = "text"
+                    placeholder = "add task"
+                    onChange = {noteText => this.updateNoteText(noteText)}
                 />
-                <button
-                    onClick = { this.MinusItem }
-                    title = "Click to minus 1"
+                <input 
+                    type = "submit" 
+                    value = "Add to list"
                 />
-                <button onClick = { this.Validation }></button>
-                { this.state.show ? <h1>{ this.state.clicks } </h1> : '' }
-            </div>
+            </form>
         );
     }
 }
-
-
-// const FullView = styled.View`
-//     align-items: center;
-//     justify-contents: center;
-// `
-
-// const StyledButton = styled.Button`
-//     background-color: #505050;
-//     align-items: center;
-//     justify-content: center;
-// `
