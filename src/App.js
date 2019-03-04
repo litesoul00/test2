@@ -1,28 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+export default class App extends Component {
+    state = {
+        clicks: 0,
+        show: true
+    }
+
+    AddItem = () => {
+        this.setState({ clicks:this.state.clicks +1 });
+    }
+
+    MinusItem = () => {
+        this.setState({ clicks:this.state.clicks -1 });
+    }
+
+    Validation = () => {
+        this.setState({ show: !this.state.show});
+    }
+
+    render() {
+        return (
+            <div>
+                <button
+                    onClick = { this.AddItem }
+                    title = "Click to add 1"
+                />
+                <button
+                    onClick = { this.MinusItem }
+                    title = "Click to minus 1"
+                />
+                <button onClick = {this.Validation}></button>
+                {this.state.show ? <h1>{this.state.clicks} </h1>: ''}
+            </div>
+        );
+    }
 }
 
-export default App;
+
+// const FullView = styled.View`
+//     align-items: center;
+//     justify-contents: center;
+// `
+
+// const StyledButton = styled.Button`
+//     background-color: #505050;
+//     align-items: center;
+//     justify-content: center;
+// `
