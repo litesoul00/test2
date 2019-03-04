@@ -7,15 +7,15 @@ export default class App extends Component {
     }
 
     AddItem = () => {
-        this.setState({ clicks:this.state.clicks +1 });
+        this.setState({ clicks : this.state.clicks +1 });
     }
 
     MinusItem = () => {
-        this.setState({ clicks:this.state.clicks -1 });
+        this.setState({ clicks: this.state.clicks -1 });
     }
 
     Validation = () => {
-        this.setState({ show: !this.state.show});
+        this.setState({ show : !this.state.show });
     }
 
     render() {
@@ -29,8 +29,8 @@ export default class App extends Component {
                     onClick = { this.MinusItem }
                     title = "Click to minus 1"
                 />
-                <button onClick = {this.Validation}></button>
-                {this.state.show ? <h1>{this.state.clicks} </h1>: ''}
+                <button onClick = { this.Validation }></button>
+                { this.state.show ? <h1>{ this.state.clicks } </h1> : '' }
             </div>
         );
     }
